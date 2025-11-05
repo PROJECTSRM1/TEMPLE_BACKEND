@@ -1,6 +1,7 @@
 ﻿using OfflineDonationsAPI.Services;
+
 using TempleAPI.Services;
-using OfflineDonationsAPI.Services;
+//using OfflineDonationsAPI.Services;
 //using TempleCalendarAPI.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -23,7 +24,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
 builder.Services.AddSingleton<DayEventService>();
-
+builder.Services.AddSingleton<AuthService>();
 // Enable Swagger
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
