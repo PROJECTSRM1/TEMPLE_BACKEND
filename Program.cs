@@ -2,9 +2,6 @@ using TempleAPI.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// -----------------------------
-// ✅ Register Services
-// -----------------------------
 builder.Services.AddSingleton<WeekEventService>();
 builder.Services.AddSingleton<MonthEventService>();
 builder.Services.AddSingleton<YearCalendarService>();
@@ -20,16 +17,12 @@ builder.Services.AddSingleton<MaalaService>();
 builder.Services.AddSingleton<SpecialSevaBookingService>();
 builder.Services.AddSingleton<DayEventService>();
 
-// -----------------------------
-// ✅ Add MVC + Swagger
-// -----------------------------
+
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// -----------------------------
-// ✅ Enable CORS for React Frontend
-// -----------------------------
+
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowReactApp", policy =>
@@ -42,9 +35,6 @@ builder.Services.AddCors(options =>
 
 var app = builder.Build();
 
-// -----------------------------
-// ✅ Configure Middleware
-// -----------------------------
 if (app.Environment.IsDevelopment())
 {
     // Enable Swagger only in development
