@@ -8,32 +8,50 @@ namespace TempleAPI.Controllers
     [Route("api/[controller]")]
     public class PoojaBookingController : ControllerBase
     {
-        private readonly IPoojaBookingService _bookingService;
+        private readonly PoojaBookingService _bookingService;
 
-        public PoojaBookingController(IPoojaBookingService bookingService)
+        public PoojaBookingController(PoojaBookingService bookingService)
         {
             _bookingService = bookingService;
         }
 
-        // POST: api/poojabooking
+        // ✅ POST: /api/PoojaBooking
         [HttpPost]
-        public IActionResult BookPooja([FromBody] PoojaBooking booking)
+        public IActionResult CreateBooking([FromBody] PoojaBooking booking)
         {
-            if (string.IsNullOrEmpty(booking.PoojaName))
-            {
-                return BadRequest(new { message = "Pooja name is required." });
-            }
+            if (booking == null)
+                return BadRequest("Invalid booking details.");
 
-            _bookingService.AddBooking(booking);
-            return Ok(new { message = $"Booking received for {booking.PoojaName}." });
+            var addedBooking = _bookingService.Add(booking);
+            return Ok(addedBooking); // ✅ same response structure frontend expects
         }
 
-        // GET: api/poojabooking
+        // ✅ GET: /api/PoojaBooking
         [HttpGet]
-        public IActionResult GetBookings()
+        public IActionResult GetAll()
         {
-            var allBookings = _bookingService.GetAllBookings();
-            return Ok(allBookings);
+            var bookings = _bookingService.GetAll();
+            return Ok(bookings);
+        }
+
+        // ✅ GET: /api/PoojaBooking/{id}
+        [HttpGet("{id}")]
+        public IActionResult GetById(int id)
+        {
+            var booking = _bookingService.GetById(id);
+            if (booking == null)
+                return NotFound();
+            return Ok(booking);
+        }
+
+        // ✅ DELETE: /api/PoojaBooking/{id}
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            var deleted = _bookingService.Delete(id);
+            if (!deleted)
+                return NotFound();
+            return NoContent();
         }
     }
 }

@@ -4,19 +4,35 @@ namespace TempleAPI.Services
 {
     public class DayEventService
     {
+        // Using a dictionary for fast lookup
         private readonly Dictionary<string, DayEvent> _events = new();
 
         public IEnumerable<DayEvent> GetAll() => _events.Values;
 
-        public DayEvent AddEvent(DayEvent dayEvent)
+        public DayEvent? GetByKey(string key)
         {
-            if (_events.ContainsKey(dayEvent.Key))
-            {
-                throw new InvalidOperationException("Event already exists at this time");
-            }
-
-            _events[dayEvent.Key] = dayEvent;
+            _events.TryGetValue(key, out var dayEvent);
             return dayEvent;
+        }
+
+        public DayEvent AddEvent(DayEvent newEvent)
+        {
+            // Prevent duplicate event at same date & hour
+            if (_events.ContainsKey(newEvent.Key))
+                throw new InvalidOperationException("An event already exists at this time.");
+
+            _events[newEvent.Key] = newEvent;
+            return newEvent;
+        }
+
+        public bool DeleteEvent(string key)
+        {
+            return _events.Remove(key);
+        }
+
+        public void ClearAll()
+        {
+            _events.Clear();
         }
     }
 }

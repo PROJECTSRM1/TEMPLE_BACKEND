@@ -1,6 +1,8 @@
-﻿using OfflineDonationsAPI.Services;
+﻿
 
 using TempleAPI.Services;
+
+
 //using OfflineDonationsAPI.Services;
 //using TempleCalendarAPI.Services;
 
@@ -9,22 +11,23 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services
 builder.Services.AddSingleton<WeekEventService>();
 builder.Services.AddSingleton<MonthEventService>();
-builder.Services.AddSingleton<YearEventService>();
-// Add custom service
+builder.Services.AddSingleton<TempleAPI.Services.YearCalendarService>();
 builder.Services.AddScoped<IContactService, ContactService>();
 builder.Services.AddSingleton<DharshanBookingService>();
 builder.Services.AddScoped<IDonationService, DonationService>();
 builder.Services.AddSingleton<SpecialDonationService>();
 builder.Services.AddSingleton<EventRegistrationService>();
-builder.Services.AddSingleton<TempleAPI.Services.SpecialSevaService>();
-builder.Services.AddSingleton<IOfflineDonationService, OfflineDonationService>();
-builder.Services.AddSingleton<IPoojaBookingService, PoojaBookingService>();
+builder.Services.AddSingleton<OfflineDonationService>();
+builder.Services.AddSingleton<PoojaBookingService>();
+builder.Services.AddSingleton<AnnadanamService>();
+builder.Services.AddSingleton<TempleAPI.Services.MaalaService>();
+builder.Services.AddSingleton<SpecialSevaBookingService>();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
 builder.Services.AddSingleton<DayEventService>();
-builder.Services.AddSingleton<AuthService>();
+
 // Enable Swagger
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

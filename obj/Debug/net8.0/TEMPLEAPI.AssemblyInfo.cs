@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TempleAPI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ecfd3b28225d4f5a25077dcf230c6aaccb5349f2")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+53986c66b9c1fd74ed7cef37189f7fba13f0fd6a")]
 [assembly: System.Reflection.AssemblyProductAttribute("TempleAPI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TempleAPI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

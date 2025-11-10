@@ -1,27 +1,31 @@
-﻿using TempleAPI.Models;
+﻿using System.Collections.Generic;
+using System.Linq;
+using TempleAPI.Models;
 
 namespace TempleAPI.Services
 {
-    public interface IPoojaBookingService
-    {
-        void AddBooking(PoojaBooking booking);
-        IEnumerable<PoojaBooking> GetAllBookings();
-    }
-
-    public class PoojaBookingService : IPoojaBookingService
+    public class PoojaBookingService
     {
         private readonly List<PoojaBooking> _bookings = new();
+        private int _nextId = 1;
 
-        public void AddBooking(PoojaBooking booking)
+        public IEnumerable<PoojaBooking> GetAll() => _bookings;
+
+        public PoojaBooking? GetById(int id) => _bookings.FirstOrDefault(b => b.Id == id);
+
+        public PoojaBooking Add(PoojaBooking booking)
         {
+            booking.Id = _nextId++;
             _bookings.Add(booking);
-            Console.WriteLine("New Pooja booked:");
-            Console.WriteLine(System.Text.Json.JsonSerializer.Serialize(booking, new System.Text.Json.JsonSerializerOptions { WriteIndented = true }));
+            return booking;
         }
 
-        public IEnumerable<PoojaBooking> GetAllBookings()
+        public bool Delete(int id)
         {
-            return _bookings;
+            var booking = GetById(id);
+            if (booking == null) return false;
+            _bookings.Remove(booking);
+            return true;
         }
     }
 }

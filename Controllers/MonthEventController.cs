@@ -15,42 +15,28 @@ namespace TempleAPI.Controllers
             _service = service;
         }
 
-        // GET: api/MonthEvent
         [HttpGet]
         public IActionResult GetAll()
         {
-            return Ok(_service.GetAll());
+            return Ok(_service.GetAllEvents());
         }
 
-        // GET: api/MonthEvent/{date}
-        [HttpGet("{date}")]
-        public IActionResult GetByDate(string date)
-        {
-            var ev = _service.GetByDate(date);
-            if (ev == null)
-                return NotFound();
-            return Ok(ev);
-        }
-
-        // POST: api/MonthEvent
         [HttpPost]
-        public IActionResult AddOrUpdate([FromBody] MonthEvent ev)
+        public IActionResult Add([FromBody] MonthEvent ev)
         {
-            if (string.IsNullOrWhiteSpace(ev.Date))
-                return BadRequest("Date is required");
+            var added = _service.AddEvent(ev);
+            if (added == null)
+                return BadRequest("An event already exists at this date and time.");
 
-            var result = _service.AddOrUpdateEvent(ev);
-            return Ok(result);
+            return Ok(added);
         }
 
-        // DELETE: api/MonthEvent/{date}
-        [HttpDelete("{date}")]
-        public IActionResult Delete(string date)
+        [HttpDelete("{date}/{index}")]
+        public IActionResult Delete(string date, int index)
         {
-            var removed = _service.DeleteEvent(date);
-            if (!removed)
-                return NotFound();
-            return Ok(new { message = $"Event on {date} deleted." });
+            var success = _service.DeleteEvent(date, index);
+            if (!success) return NotFound();
+            return Ok();
         }
     }
 }

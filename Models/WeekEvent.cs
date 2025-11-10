@@ -2,10 +2,10 @@
 {
     public class WeekEvent
     {
-        public string Day { get; set; }
-        public string Title { get; set; }
-        public string Date { get; set; }
-        public string Time { get; set; }
-        public string Image { get; set; }
+        public string Day { get; set; } = string.Empty;
+        public string Title { get; set; } = string.Empty;
+        public string Date { get; set; } = string.Empty;
+        public string Time { get; set; } = string.Empty;
+        public string Image { get; set; } = string.Empty;
     }
 }

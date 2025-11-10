@@ -1,27 +1,20 @@
-﻿using OfflineDonationsAPI.Models;
+﻿using System.Collections.Generic;
+using System.Linq;
+using TempleAPI.Models;
 
-namespace OfflineDonationsAPI.Services
+namespace TempleAPI.Services
 {
-    public interface IOfflineDonationService
-    {
-        IEnumerable<OfflineDonation> GetAll();
-        void AddDonation(OfflineDonation donation);
-    }
-
-    public class OfflineDonationService : IOfflineDonationService
+    public class OfflineDonationService
     {
         private readonly List<OfflineDonation> _donations = new();
 
-        public IEnumerable<OfflineDonation> GetAll()
-        {
-            return _donations;
-        }
+        public IEnumerable<OfflineDonation> GetAll() => _donations;
 
-        public void AddDonation(OfflineDonation donation)
+        public OfflineDonation Add(OfflineDonation donation)
         {
+            donation.Id = _donations.Count + 1;
             _donations.Add(donation);
-            Console.WriteLine("New donation added:");
-            Console.WriteLine(System.Text.Json.JsonSerializer.Serialize(donation, new System.Text.Json.JsonSerializerOptions { WriteIndented = true }));
+            return donation;
         }
     }
 }

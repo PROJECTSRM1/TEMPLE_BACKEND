@@ -2,12 +2,12 @@
 {
     public class YearEvent
     {
-        public int Id { get; set; }               // Auto-generated ID
-        public int Month { get; set; }            // Month number (1–12)
-        public string Date { get; set; } = string.Empty;
+        public int Id { get; set; }
+        public int Month { get; set; }
+        public int Date { get; set; }
         public string Day { get; set; } = string.Empty;
         public string Time { get; set; } = string.Empty;
         public string Title { get; set; } = string.Empty;
-        public string? Image { get; set; }        // Base64 image string
+        public string Image { get; set; } = string.Empty;
     }
 }

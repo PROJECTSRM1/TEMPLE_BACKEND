@@ -1,5 +1,124 @@
 [
   {
+    "ContainingType": "TempleAPI.Controllers.AnnadanamController",
+    "Method": "GetAll",
+    "RelativePath": "api/Annadanam",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[TempleAPI.Models.AnnadanamModel, TempleAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "TempleAPI.Controllers.AnnadanamController",
+    "Method": "Create",
+    "RelativePath": "api/Annadanam",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "data",
+        "Type": "TempleAPI.Models.AnnadanamModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "TempleAPI.Models.AnnadanamModel",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "TempleAPI.Controllers.AnnadanamController",
+    "Method": "GetById",
+    "RelativePath": "api/Annadanam/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "TempleAPI.Models.AnnadanamModel",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "TempleAPI.Controllers.AnnadanamController",
+    "Method": "Update",
+    "RelativePath": "api/Annadanam/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "data",
+        "Type": "TempleAPI.Models.AnnadanamModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "TempleAPI.Models.AnnadanamModel",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "TempleAPI.Controllers.AnnadanamController",
+    "Method": "Delete",
+    "RelativePath": "api/Annadanam/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "TempleAPI.Controllers.ContactController",
     "Method": "PostContact",
     "RelativePath": "api/Contact",
@@ -27,25 +146,87 @@
   },
   {
     "ContainingType": "TempleAPI.Controllers.DayEventController",
-    "Method": "GetEvents",
+    "Method": "GetAll",
     "RelativePath": "api/DayEvent",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [],
-    "ReturnTypes": []
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[TempleAPI.Models.DayEvent, TempleAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "TempleAPI.Controllers.DayEventController",
-    "Method": "AddEvent",
+    "Method": "Add",
     "RelativePath": "api/DayEvent",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "dayEvent",
+        "Name": "newEvent",
         "Type": "TempleAPI.Models.DayEvent",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "TempleAPI.Models.DayEvent",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "TempleAPI.Controllers.DayEventController",
+    "Method": "Get",
+    "RelativePath": "api/DayEvent/{key}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "key",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "TempleAPI.Models.DayEvent",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "TempleAPI.Controllers.DayEventController",
+    "Method": "Delete",
+    "RelativePath": "api/DayEvent/{key}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "key",
+        "Type": "System.String",
         "IsRequired": true
       }
     ],
@@ -130,6 +311,52 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "TempleAPI.Controllers.MaalaController",
+    "Method": "CreateMaalaToken",
+    "RelativePath": "api/Maala",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "TempleAPI.Models.MaalaRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "TempleAPI.Models.MaalaResponse",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "TempleAPI.Controllers.MaalaController",
+    "Method": "GetAllTokens",
+    "RelativePath": "api/Maala",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[TempleAPI.Models.MaalaResponse, TempleAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
     "ContainingType": "TempleAPI.Controllers.MonthEventController",
     "Method": "GetAll",
     "RelativePath": "api/MonthEvent",
@@ -141,7 +368,7 @@
   },
   {
     "ContainingType": "TempleAPI.Controllers.MonthEventController",
-    "Method": "AddOrUpdate",
+    "Method": "Add",
     "RelativePath": "api/MonthEvent",
     "HttpMethod": "POST",
     "IsController": true,
@@ -157,24 +384,8 @@
   },
   {
     "ContainingType": "TempleAPI.Controllers.MonthEventController",
-    "Method": "GetByDate",
-    "RelativePath": "api/MonthEvent/{date}",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "date",
-        "Type": "System.String",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "TempleAPI.Controllers.MonthEventController",
     "Method": "Delete",
-    "RelativePath": "api/MonthEvent/{date}",
+    "RelativePath": "api/MonthEvent/{date}/{index}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -183,30 +394,19 @@
         "Name": "date",
         "Type": "System.String",
         "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "OfflineDonationsAPI.Controllers.OfflineDonationsController",
-    "Method": "SubmitDonation",
-    "RelativePath": "api/OfflineDonations",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
+      },
       {
-        "Name": "donation",
-        "Type": "OfflineDonationsAPI.Models.OfflineDonation",
+        "Name": "index",
+        "Type": "System.Int32",
         "IsRequired": true
       }
     ],
     "ReturnTypes": []
   },
   {
-    "ContainingType": "OfflineDonationsAPI.Controllers.OfflineDonationsController",
-    "Method": "GetDonations",
-    "RelativePath": "api/OfflineDonations",
+    "ContainingType": "TempleAPI.Controllers.OfflineDonationController",
+    "Method": "GetAll",
+    "RelativePath": "api/OfflineDonation",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -214,8 +414,24 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "TempleAPI.Controllers.OfflineDonationController",
+    "Method": "Create",
+    "RelativePath": "api/OfflineDonation",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "donation",
+        "Type": "TempleAPI.Models.OfflineDonation",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "TempleAPI.Controllers.PoojaBookingController",
-    "Method": "BookPooja",
+    "Method": "CreateBooking",
     "RelativePath": "api/PoojaBooking",
     "HttpMethod": "POST",
     "IsController": true,
@@ -231,12 +447,44 @@
   },
   {
     "ContainingType": "TempleAPI.Controllers.PoojaBookingController",
-    "Method": "GetBookings",
+    "Method": "GetAll",
     "RelativePath": "api/PoojaBooking",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "TempleAPI.Controllers.PoojaBookingController",
+    "Method": "GetById",
+    "RelativePath": "api/PoojaBooking/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "TempleAPI.Controllers.PoojaBookingController",
+    "Method": "Delete",
+    "RelativePath": "api/PoojaBooking/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
     "ReturnTypes": []
   },
   {
@@ -266,29 +514,112 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "TempleAPI.Controllers.SpecialSevaController",
-    "Method": "BookSeva",
-    "RelativePath": "api/SpecialSeva",
+    "ContainingType": "TempleAPI.Controllers.SpecialSevaBookingController",
+    "Method": "GetAll",
+    "RelativePath": "api/SpecialSevaBooking",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[TempleAPI.Models.SpecialSevaBooking, TempleAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "TempleAPI.Controllers.SpecialSevaBookingController",
+    "Method": "Create",
+    "RelativePath": "api/SpecialSevaBooking",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
         "Name": "booking",
-        "Type": "TempleAPI.Models.SpecialSeva",
+        "Type": "TempleAPI.Models.SpecialSevaBooking",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "TempleAPI.Models.SpecialSevaBooking",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "TempleAPI.Controllers.SpecialSevaBookingController",
+    "Method": "GetById",
+    "RelativePath": "api/SpecialSevaBooking/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "TempleAPI.Models.SpecialSevaBooking",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "TempleAPI.Controllers.SpecialSevaBookingController",
+    "Method": "Update",
+    "RelativePath": "api/SpecialSevaBooking/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "booking",
+        "Type": "TempleAPI.Models.SpecialSevaBooking",
         "IsRequired": true
       }
     ],
     "ReturnTypes": []
   },
   {
-    "ContainingType": "TempleAPI.Controllers.SpecialSevaController",
-    "Method": "GetBookings",
-    "RelativePath": "api/SpecialSeva",
-    "HttpMethod": "GET",
+    "ContainingType": "TempleAPI.Controllers.SpecialSevaBookingController",
+    "Method": "Delete",
+    "RelativePath": "api/SpecialSevaBooking/{id}",
+    "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
-    "Parameters": [],
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
     "ReturnTypes": []
   },
   {
@@ -349,33 +680,53 @@
   },
   {
     "ContainingType": "TempleAPI.Controllers.YearCalendarController",
-    "Method": "GetAll",
+    "Method": "Get",
     "RelativePath": "api/YearCalendar",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [],
-    "ReturnTypes": []
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[TempleAPI.Models.YearEvent, TempleAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "TempleAPI.Controllers.YearCalendarController",
-    "Method": "Add",
+    "Method": "Post",
     "RelativePath": "api/YearCalendar",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "newEvent",
+        "Name": "ev",
         "Type": "TempleAPI.Models.YearEvent",
         "IsRequired": true
       }
     ],
-    "ReturnTypes": []
+    "ReturnTypes": [
+      {
+        "Type": "TempleAPI.Models.YearEvent",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "TempleAPI.Controllers.YearCalendarController",
-    "Method": "GetById",
+    "Method": "Get",
     "RelativePath": "api/YearCalendar/{id}",
     "HttpMethod": "GET",
     "IsController": true,
@@ -387,11 +738,21 @@
         "IsRequired": true
       }
     ],
-    "ReturnTypes": []
+    "ReturnTypes": [
+      {
+        "Type": "TempleAPI.Models.YearEvent",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "TempleAPI.Controllers.YearCalendarController",
-    "Method": "Update",
+    "Method": "Put",
     "RelativePath": "api/YearCalendar/{id}",
     "HttpMethod": "PUT",
     "IsController": true,
@@ -403,12 +764,22 @@
         "IsRequired": true
       },
       {
-        "Name": "updated",
+        "Name": "ev",
         "Type": "TempleAPI.Models.YearEvent",
         "IsRequired": true
       }
     ],
-    "ReturnTypes": []
+    "ReturnTypes": [
+      {
+        "Type": "TempleAPI.Models.YearEvent",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "TempleAPI.Controllers.YearCalendarController",

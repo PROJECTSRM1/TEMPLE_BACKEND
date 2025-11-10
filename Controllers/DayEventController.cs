@@ -8,38 +8,51 @@ namespace TempleAPI.Controllers
     [Route("api/[controller]")]
     public class DayEventController : ControllerBase
     {
-        private readonly DayEventService _eventService;
+        private readonly DayEventService _service;
 
-        public DayEventController(DayEventService eventService)
+        public DayEventController(DayEventService service)
         {
-            _eventService = eventService;
+            _service = service;
         }
 
         // GET: api/DayEvent
         [HttpGet]
-        public IActionResult GetEvents()
+        public ActionResult<IEnumerable<DayEvent>> GetAll()
         {
-            return Ok(_eventService.GetAll());
+            return Ok(_service.GetAll());
+        }
+
+        // GET: api/DayEvent/{key}
+        [HttpGet("{key}")]
+        public ActionResult<DayEvent> Get(string key)
+        {
+            var ev = _service.GetByKey(key);
+            if (ev == null) return NotFound("Event not found");
+            return Ok(ev);
         }
 
         // POST: api/DayEvent
         [HttpPost]
-        public IActionResult AddEvent([FromBody] DayEvent dayEvent)
+        public ActionResult<DayEvent> Add([FromBody] DayEvent newEvent)
         {
-            if (dayEvent == null || string.IsNullOrEmpty(dayEvent.Key))
-            {
-                return BadRequest("Invalid event data.");
-            }
-
             try
             {
-                var stored = _eventService.AddEvent(dayEvent);
-                return Ok(stored);
+                var added = _service.AddEvent(newEvent);
+                return CreatedAtAction(nameof(Get), new { key = added.Key }, added);
             }
-            catch (Exception ex)
+            catch (InvalidOperationException ex)
             {
-                return Conflict(ex.Message); // Duplicate event
+                return BadRequest(ex.Message);
             }
+        }
+
+        // DELETE: api/DayEvent/{key}
+        [HttpDelete("{key}")]
+        public IActionResult Delete(string key)
+        {
+            var removed = _service.DeleteEvent(key);
+            if (!removed) return NotFound("Event not found");
+            return NoContent();
         }
     }
 }

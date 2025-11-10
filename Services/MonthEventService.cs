@@ -1,38 +1,42 @@
-﻿using System.Collections.Concurrent;
-using TempleAPI.Models;
+﻿using TempleAPI.Models;
 
 namespace TempleAPI.Services
 {
     public class MonthEventService
     {
-        // Thread-safe in-memory event store
-        private readonly ConcurrentDictionary<string, MonthEvent> _events = new();
+        // In-memory storage
+        private readonly List<MonthEvent> _events = new List<MonthEvent>();
 
-        // Get all events
-        public IEnumerable<MonthEvent> GetAll()
+        public List<MonthEvent> GetAllEvents()
         {
-            return _events.Values.OrderBy(e => e.Date);
+            return _events.OrderBy(e =>
+            {
+                var parts = e.Date.Split('-').Select(int.Parse).ToArray();
+                return new DateTime(parts[2], parts[1], parts[0]);
+            }).ToList();
         }
 
-        // Get single event by date key
-        public MonthEvent? GetByDate(string date)
+        public MonthEvent? AddEvent(MonthEvent ev)
         {
-            _events.TryGetValue(date, out var ev);
+            // Check duplicate: same date and time
+            var exists = _events.Any(e => e.Date == ev.Date && e.Time == ev.Time);
+            if (exists)
+            {
+                return null; // reject duplicate
+            }
+
+            _events.Add(ev);
             return ev;
         }
 
-        // Add or Update an event
-        public MonthEvent AddOrUpdateEvent(MonthEvent monthEvent)
+        public bool DeleteEvent(string date, int index)
         {
-            // The date will be used as key (like “25-10-2025”)
-            _events[monthEvent.Date] = monthEvent;
-            return monthEvent;
-        }
+            var dateEvents = _events.Where(e => e.Date == date).ToList();
+            if (index < 0 || index >= dateEvents.Count) return false;
 
-        // Delete an event by date
-        public bool DeleteEvent(string date)
-        {
-            return _events.TryRemove(date, out _);
+            var evToRemove = dateEvents[index];
+            _events.Remove(evToRemove);
+            return true;
         }
     }
 }

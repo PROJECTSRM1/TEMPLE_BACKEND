@@ -8,59 +8,67 @@ namespace TempleAPI.Controllers
     [Route("api/[controller]")]
     public class YearCalendarController : ControllerBase
     {
-        private readonly YearEventService _service;
+        private readonly YearCalendarService _service;
 
-        public YearCalendarController(YearEventService service)
+        public YearCalendarController(YearCalendarService service)
         {
             _service = service;
         }
 
-        // ✅ GET: api/YearCalendar
+        // ✅ Get all events
         [HttpGet]
-        public IActionResult GetAll()
-        {
-            var events = _service.GetAll();
-            return Ok(events);
-        }
+        public ActionResult<List<YearEvent>> Get() => _service.GetAll();
 
-        // ✅ GET by ID
+        // ✅ Get a specific event by ID
         [HttpGet("{id}")]
-        public IActionResult GetById(int id)
+        public ActionResult<YearEvent> Get(int id)
         {
             var ev = _service.GetById(id);
-            if (ev == null) return NotFound("Event not found");
+            if (ev == null)
+                return NotFound();
             return Ok(ev);
         }
 
-        // ✅ POST: api/YearCalendar
+        // ✅ Add a new event
         [HttpPost]
-        public IActionResult Add([FromBody] YearEvent newEvent)
+        public ActionResult<YearEvent> Post([FromBody] YearEvent ev)
         {
-            if (newEvent == null || string.IsNullOrEmpty(newEvent.Title))
-                return BadRequest("Invalid event data");
-
-            var added = _service.Add(newEvent);
-            return Ok(new { message = "Successfully Updated!", eventData = added });
+            try
+            {
+                var added = _service.Add(ev);
+                return CreatedAtAction(nameof(Get), new { id = added.Id }, added);
+            }
+            catch (InvalidOperationException ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
-        // ✅ PUT: api/YearCalendar/{id}
+        // ✅ Update an existing event
         [HttpPut("{id}")]
-        public IActionResult Update(int id, [FromBody] YearEvent updated)
+        public ActionResult<YearEvent> Put(int id, [FromBody] YearEvent ev)
         {
-            if (!_service.Update(id, updated))
-                return NotFound("Event not found");
-
-            return Ok(new { message = "Successfully Updated!" });
+            try
+            {
+                var updated = _service.Update(id, ev);
+                return Ok(updated);
+            }
+            catch (KeyNotFoundException)
+            {
+                return NotFound($"Event with ID {id} not found.");
+            }
+            catch (InvalidOperationException ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
-        // ✅ DELETE: api/YearCalendar/{id}
+        // ✅ Delete an event
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            if (!_service.Delete(id))
-                return NotFound("Event not found");
-
-            return Ok(new { message = "Event deleted successfully" });
+            _service.Delete(id);
+            return NoContent();
         }
     }
 }
