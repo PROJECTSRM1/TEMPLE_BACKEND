@@ -58,4 +58,7 @@ app.UseCors("AllowReactApp");
 app.UseAuthorization();
 app.MapControllers();
 
+app.MapGet("/", () => "Temple API is running successfully! 🚀");
+
+
 app.Run();
